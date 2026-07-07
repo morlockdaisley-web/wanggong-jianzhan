@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>内容管理后台(演示版) | 泰昌食品机械</title>
+<meta name="description" content="泰昌食品机械官网内容管理后台演示:新闻增删改、产品信息维护与企业联系方式修改,改完前台刷新即生效。">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header class="ding">
+  <div class="ding-nei">
+    <div class="biao">
+      <svg viewBox="0 0 48 48" role="img" aria-hidden="true">
+        <title>泰昌食品机械标识</title>
+        <rect x="1" y="1" width="46" height="46" rx="11" fill="#0F8B7E"/>
+        <circle cx="24" cy="24" r="15" fill="none" stroke="#FFFFFF" stroke-width="2.5"
+          stroke-dasharray="5.2 3" stroke-linecap="round"/>
+        <line x1="24" y1="33" x2="24" y2="16" stroke="#E8A33D" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M24 20 Q19 19 18.5 14.5 Q23.5 15 24 20 Z" fill="#E8A33D"/>
+        <path d="M24 20 Q29 19 29.5 14.5 Q24.5 15 24 20 Z" fill="#FFF6E6"/>
+        <path d="M24 26 Q19.5 25 19 20.8 Q23.6 21.6 24 26 Z" fill="#FFF6E6"/>
+        <path d="M24 26 Q28.5 25 29 20.8 Q24.4 21.6 24 26 Z" fill="#E8A33D"/>
+        <circle cx="24" cy="13" r="1.6" fill="#FFFFFF"/>
+      </svg>
+      <h1>泰昌食品机械 · 内容管理后台</h1>
+      <span class="yan">演示版</span>
+    </div>
+    <div class="ding-you">
+      <button class="ding-niu" id="chongzhi" type="button">恢复演示数据</button>
+      <a class="ding-niu ding-niu--shi" href="index.html">查看前台 ↗</a>
+    </div>
+  </div>
+</header>
+
+<div class="kuang">
+  <aside class="cebian">
+    <p class="zu">内容模块</p>
+    <button class="cai-niu huo" data-mk="xinwen" type="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 6 h6 M5 9 h6 M5 12 h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      新闻管理
+    </button>
+    <button class="cai-niu" data-mk="chanpin" type="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8 14 5 v6 L8 14.2 2 11 V5 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 5 l6 3 6 -3 M8 8 v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      产品管理
+    </button>
+    <button class="cai-niu" data-mk="qiye" type="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 14 V4 a1.5 1.5 0 0 1 1.5 -1.5 h4 A1.5 1.5 0 0 1 10 4 v10 M10 6 h2.5 A1.5 1.5 0 0 1 14 7.5 V14 M2 14 h13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M5.5 5.5 h2 M5.5 8 h2 M5.5 10.5 h2" stroke="currentColor" stroke-width="1.4"/></svg>
+      企业信息
+    </button>
+  </aside>
+
+  <main class="zhuti">
+    <!-- 新闻管理 -->
+    <section class="mokuai huo" id="mk-xinwen" aria-label="新闻管理">
+      <div class="mk-tou">
+        <div>
+          <h2>新闻管理</h2>
+          <p>这里的改动会同步到前台「新闻动态」页与首页新闻区,刷新前台即生效。</p>
+        </div>
+        <button class="an an-zhu" id="xw-xinzeng" type="button">+ 新增新闻</button>
+      </div>
+      <div class="mian">
+        <div class="biao-gun">
+          <table>
+            <thead>
+              <tr><th style="width:110px">日期</th><th>标题</th><th>摘要</th><th style="width:150px">操作</th></tr>
+            </thead>
+            <tbody id="xw-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 产品管理 -->
+    <section class="mokuai" id="mk-chanpin" aria-label="产品管理">
+      <div class="mk-tou">
+        <div>
+          <h2>产品管理</h2>
+          <p>可修改产品名称、型号与参数;示意图与详情弹窗由建站方维护,更换请联系服务商。</p>
+        </div>
+      </div>
+      <div class="mian">
+        <div class="biao-gun">
+          <table>
+            <thead>
+              <tr><th style="width:96px">分类</th><th>产品名称</th><th style="width:96px">型号</th><th>产能参数</th><th>适用场景</th><th style="width:88px">操作</th></tr>
+            </thead>
+            <tbody id="cp-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 企业信息 -->
+    <section class="mokuai" id="mk-qiye" aria-label="企业信息">
+      <div class="mk-tou">
+        <div>
+          <h2>企业信息</h2>
+          <p>联系电话与厂址会同步到前台所有页面的页脚,以及「联系我们」页。</p>
+        </div>
+      </div>
+      <div class="mian">
+        <div class="qy-biaodan">
+          <div class="bd-hang">
+            <label for="qy-dianhua">联系电话</label>
+            <input id="qy-dianhua" type="text">
+            <p class="bd-cuo" id="qy-dianhua-cuo">联系电话不能为空</p>
+            <p class="shuo">演示站建议保持 138****xxxx 脱敏格式</p>
+          </div>
+          <div class="bd-hang">
+            <label for="qy-dizhi">厂址</label>
+            <input id="qy-dizhi" type="text">
+            <p class="bd-cuo" id="qy-dizhi-cuo">厂址不能为空</p>
+          </div>
+          <button class="an an-zhu" id="qy-baocun" type="button">保存企业信息</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- 编辑 / 确认弹窗 -->
+<div class="zhe" id="zhe" role="dialog" aria-modal="true" aria-label="编辑弹窗">
+  <div class="tan" id="tan"></div>
+</div>
+
+<!-- 保存提示 -->
+<div class="tishi" id="tishi" role="status" aria-live="polite"></div>
+
+<footer class="jiao">本站为王工建站演示案例 · 企业与数据均为虚构</footer>
+
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

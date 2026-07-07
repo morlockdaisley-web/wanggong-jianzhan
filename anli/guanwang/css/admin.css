@@ -1,0 +1,145 @@
+/* ============================================================
+   泰昌食品机械 · 内容管理后台(演示版)
+   朴素后台范式:深色顶栏 + 左侧菜单 + 表格 + 编辑弹窗
+   ============================================================ */
+:root{
+  --zhu:#0F8B7E;
+  --zhu-shen:#0A6157;
+  --mo:#0B3C38;
+  --mai:#E8A33D;
+  --di:#F0F3F2;
+  --tint:#E3F1EE;
+  --zi:#3A4A47;
+  --zi-qian:#71827E;
+  --xian:#DCE3E1;
+  --bai:#FFFFFF;
+  --wei:#C0392B;
+  --han:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--han);font-size:14px;color:var(--zi);background:var(--di);line-height:1.7}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--mai);outline-offset:2px}
+h1{font-size:16px;font-weight:700}
+h2{font-size:18px;color:var(--mo);font-weight:700}
+
+/* ---------- 顶栏 ---------- */
+.ding{background:var(--mo);color:#fff;position:sticky;top:0;z-index:50}
+.ding-nei{display:flex;align-items:center;gap:14px;padding:0 20px;height:56px}
+.ding .biao{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.ding .biao svg{width:30px;height:30px;flex:none}
+.ding h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ding .yan{flex:none;font-size:12px;background:var(--mai);color:#4A3208;font-weight:700;
+  border-radius:999px;padding:2px 10px}
+.ding-you{margin-left:auto;display:flex;gap:10px}
+.ding-niu{min-height:36px;padding:0 14px;border-radius:8px;font-size:13px;border:1px solid rgba(255,255,255,.35);
+  background:transparent;color:#fff;transition:background .2s;white-space:nowrap;
+  display:inline-flex;align-items:center}
+.ding-niu:hover{background:rgba(255,255,255,.14)}
+.ding-niu--shi{background:var(--zhu);border-color:var(--zhu)}
+.ding-niu--shi:hover{background:var(--zhu-shen)}
+
+/* ---------- 布局 ---------- */
+.kuang{display:flex;min-height:calc(100vh - 56px - 46px)}
+.cebian{width:200px;flex:none;background:var(--bai);border-right:1px solid var(--xian);padding:18px 12px}
+.cebian .zu{font-size:12px;color:var(--zi-qian);letter-spacing:1px;padding:0 10px;margin-bottom:8px}
+.cai-niu{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:0 12px;
+  border:none;background:none;border-radius:8px;font-size:14px;color:var(--zi);text-align:left;
+  transition:background .2s,color .2s;margin-bottom:4px}
+.cai-niu svg{flex:none}
+.cai-niu:hover{background:var(--di)}
+.cai-niu.huo{background:var(--tint);color:var(--zhu-shen);font-weight:700}
+.zhuti{flex:1;padding:24px;min-width:0}
+
+/* ---------- 模块面板 ---------- */
+.mokuai{display:none}
+.mokuai.huo{display:block}
+.mk-tou{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.mk-tou p{font-size:13px;color:var(--zi-qian)}
+.mian{background:var(--bai);border-radius:10px;border:1px solid var(--xian);overflow:hidden}
+
+/* ---------- 按钮 ---------- */
+.an{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;
+  padding:0 18px;border-radius:8px;font-size:14px;font-weight:700;border:none;
+  transition:background .2s,color .2s}
+.an-zhu{background:var(--zhu);color:#fff}
+.an-zhu:hover{background:var(--zhu-shen)}
+.an-ci{background:var(--tint);color:var(--zhu-shen)}
+.an-ci:hover{background:#D2E8E3}
+.an-wei{background:#FBEAE8;color:var(--wei)}
+.an-wei:hover{background:#F5D5D1}
+.an-xiao{min-height:38px;padding:0 14px;font-size:13px}
+
+/* ---------- 表格 ---------- */
+.biao-gun{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--xian);font-size:14px;vertical-align:top}
+th{background:var(--di);color:var(--zi-qian);font-size:13px;font-weight:700;white-space:nowrap}
+tbody tr:hover{background:#F7FAF9}
+tbody tr:last-child td{border-bottom:none}
+td .zhai{color:var(--zi-qian);font-size:13px;display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden;max-width:420px}
+.cao{display:flex;gap:8px;flex-wrap:wrap}
+.riqi-ge{white-space:nowrap;color:var(--zi-qian)}
+.xh{display:inline-block;font-size:12px;font-weight:700;color:var(--zhu-shen);
+  background:var(--tint);border-radius:5px;padding:1px 8px;white-space:nowrap}
+
+/* ---------- 企业信息表单 ---------- */
+.qy-biaodan{padding:24px;max-width:560px}
+.bd-hang{margin-bottom:18px}
+.bd-hang label{display:block;font-weight:700;color:var(--mo);margin-bottom:6px;font-size:14px}
+.bd-hang input,.bd-hang textarea{width:100%;border:1.5px solid var(--xian);border-radius:8px;
+  padding:10px 12px;font-size:14px;font-family:inherit;color:var(--zi);min-height:44px;
+  transition:border-color .2s,box-shadow .2s}
+.bd-hang textarea{min-height:88px;resize:vertical}
+.bd-hang input:focus,.bd-hang textarea:focus{outline:none;border-color:var(--zhu);
+  box-shadow:0 0 0 3px rgba(15,139,126,.14)}
+.bd-hang .shuo{font-size:12px;color:var(--zi-qian);margin-top:4px}
+.bd-cuo{display:none;font-size:13px;color:var(--wei);margin-top:5px}
+.bd-cuo.xian{display:block}
+
+/* ---------- 弹窗 ---------- */
+.zhe{position:fixed;inset:0;background:rgba(7,48,44,.5);z-index:90;display:none;
+  align-items:center;justify-content:center;padding:16px}
+.zhe.kai{display:flex}
+.tan{background:var(--bai);border-radius:12px;width:100%;max-width:520px;max-height:88vh;
+  overflow-y:auto;padding:24px;box-shadow:0 18px 44px rgba(7,48,44,.25)}
+.tan-tou{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.tan-guan{width:44px;height:44px;border:none;background:var(--di);border-radius:8px;
+  font-size:18px;color:var(--mo);line-height:1}
+.tan-guan:hover{background:var(--tint)}
+.tan-jiao{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;flex-wrap:wrap}
+.tan .ti{font-size:14px;margin-bottom:6px}
+.tan .ti b{color:var(--mo)}
+
+/* ---------- 提示条(toast) ---------- */
+.tishi{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(80px);
+  background:var(--mo);color:#fff;font-size:14px;border-radius:999px;padding:11px 24px;
+  box-shadow:0 10px 26px rgba(7,48,44,.3);opacity:0;transition:transform .3s,opacity .3s;
+  z-index:99;pointer-events:none;max-width:calc(100vw - 40px);text-align:center}
+.tishi.xian{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ---------- 空态 ---------- */
+.kong{padding:44px 20px;text-align:center;color:var(--zi-qian);font-size:14px}
+
+/* ---------- 页脚 ---------- */
+.jiao{height:46px;display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:var(--zi-qian);text-align:center;padding:0 16px}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:860px){
+  .kuang{flex-direction:column}
+  .cebian{width:100%;border-right:none;border-bottom:1px solid var(--xian);
+    display:flex;gap:6px;padding:10px 12px;overflow-x:auto;align-items:center}
+  .cebian .zu{display:none}
+  .cai-niu{width:auto;flex:none;margin-bottom:0;white-space:nowrap}
+  .zhuti{padding:16px}
+  .ding-nei{height:auto;min-height:56px;flex-wrap:wrap;padding:8px 12px;gap:8px;row-gap:8px}
+  .ding .biao{flex:1 1 100%}
+  .ding-you{margin-left:0;width:100%;justify-content:flex-end}
+  .ding-niu{min-height:40px}
+  .ding h1{font-size:14px}
+  .qy-biaodan{padding:18px}
+}

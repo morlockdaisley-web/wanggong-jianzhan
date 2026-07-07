@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>星码少儿编程 · 7-12 岁孩子的第一节编程课 ¥9.9 体验</title>
+<meta name="description" content="星码少儿编程(杭州),面向 7-12 岁孩子的图形化启蒙、Python 入门、算法思维、竞赛方向四阶课程。体验课限时 ¥9.9,报名后今天 18:00 前老师电话确认。">
+<style>
+:root{
+  --cheng: #FF5C1A;
+  --cheng-shen: #E04A0D;
+  --lan: #101C3D;
+  --lan-qian: #1B2B55;
+  --zhi: #FFF7EE;
+  --bai: #FFFFFF;
+  --mo: #2A2F3A;
+  --hui: #626B7A;
+  --xian: #E9E2D6;
+  --mono: ui-monospace, Consolas, "Courier New", monospace;
+  /* 字阶 5 级 */
+  --zi-1: clamp(40px, 9vw, 92px);
+  --zi-2: clamp(26px, 5vw, 44px);
+  --zi-3: 20px;
+  --zi-4: 16px;
+  --zi-5: 13px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+  color:var(--mo);
+  background:var(--zhi);
+  font-size:var(--zi-4);
+  line-height:1.7;
+}
+img,svg{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+.rong{max-width:880px;margin:0 auto;padding:0 24px;}
+
+/* ============ 顶部导航 ============ */
+.daohang{
+  position:sticky;top:0;z-index:50;
+  background:var(--lan);
+  border-bottom:2px solid var(--cheng);
+}
+.daohang-nei{
+  max-width:1080px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.logo{display:flex;align-items:center;gap:10px;color:var(--bai);font-weight:700;font-size:var(--zi-3);}
+.logo svg{width:28px;height:28px;flex:none;}
+.logo small{font-family:var(--mono);font-size:var(--zi-5);color:rgba(255,255,255,.55);font-weight:400;margin-left:2px;}
+.dh-lianjie{display:flex;align-items:center;gap:6px;}
+.dh-lianjie a{
+  color:rgba(255,255,255,.85);font-size:var(--zi-4);
+  padding:10px 14px;border-radius:6px;transition:color .2s, background .2s;
+}
+.dh-lianjie a:hover,.dh-lianjie a:focus-visible{color:var(--bai);background:rgba(255,255,255,.1);outline:none;}
+.dh-cta{
+  background:var(--cheng);color:var(--bai);font-weight:700;
+  padding:10px 20px;border-radius:8px;margin-left:10px;
+  transition:background .2s, transform .2s;
+}
+.dh-cta:hover,.dh-cta:focus-visible{background:var(--cheng-shen);transform:translateY(-1px);outline:none;}
+.hanbao{
+  display:none;background:none;border:none;cursor:pointer;
+  width:48px;height:48px;padding:12px;
+}
+.hanbao span{display:block;height:3px;background:var(--bai);border-radius:2px;transition:transform .25s, opacity .25s;}
+.hanbao span + span{margin-top:5px;}
+.hanbao[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.hanbao[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hanbao[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+/* ============ 首屏 ============ */
+.shouping{
+  background:var(--lan);color:var(--bai);
+  padding:72px 0 88px;position:relative;overflow:hidden;
+}
+.shouping .rong{position:relative;z-index:2;}
+.sp-zhushi{
+  font-family:var(--mono);color:var(--cheng);font-size:var(--zi-4);
+  letter-spacing:1px;margin-bottom:18px;
+}
+.sp-biaoyu{
+  font-size:var(--zi-1);font-weight:900;line-height:1.15;
+  letter-spacing:.01em;
+  animation:jinru .8s ease both;
+}
+.sp-biaoyu .xiahua{
+  position:relative;display:inline-block;color:var(--cheng);white-space:nowrap;
+}
+.sp-biaoyu .xiahua::after{
+  content:"";position:absolute;left:0;right:0;bottom:-.1em;height:.11em;
+  background:
+    linear-gradient(90deg, var(--cheng) 0 12.5%, transparent 12.5% 15%,
+    var(--cheng) 15% 40%, transparent 40% 42.5%,
+    var(--cheng) 42.5% 70%, transparent 70% 72.5%,
+    var(--cheng) 72.5% 100%);
+  opacity:.55;
+}
+@keyframes jinru{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+.sp-fubiao{
+  font-size:var(--zi-3);color:rgba(255,255,255,.78);
+  max-width:560px;margin:26px 0 38px;line-height:1.8;
+}
+.sp-cta{
+  display:inline-block;background:var(--cheng);color:var(--bai);
+  font-size:var(--zi-3);font-weight:700;
+  padding:18px 44px;border-radius:12px;
+  box-shadow:0 8px 24px rgba(255,92,26,.35);
+  transition:background .2s, transform .2s, box-shadow .2s;
+}
+.sp-cta:hover,.sp-cta:focus-visible{
+  background:var(--cheng-shen);transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(255,92,26,.45);outline:none;
+}
+.sp-cta small{display:block;font-size:var(--zi-5);font-weight:400;opacity:.85;margin-top:2px;}
+.xinren{
+  display:flex;flex-wrap:wrap;gap:14px 36px;
+  margin-top:52px;padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.xinren li{display:flex;flex-direction:column;}
+.xinren b{font-size:var(--zi-2);font-weight:900;color:var(--cheng);font-family:var(--mono);line-height:1.2;}
+.xinren span{font-size:var(--zi-5);color:rgba(255,255,255,.6);margin-top:4px;}
+.sp-jixiangwu{
+  position:absolute;right:4%;bottom:34px;width:min(220px,26vw);z-index:1;
+  opacity:.95;
+}
+.sp-xing{position:absolute;z-index:1;}
+
+/* ============ 通用区块 ============ */
+.duan{padding:84px 0;}
+.duan-hao{
+  font-family:var(--mono);color:var(--cheng);font-size:var(--zi-4);
+  letter-spacing:1px;margin-bottom:14px;
+}
+.duan-ti{
+  font-size:var(--zi-2);font-weight:900;color:var(--lan);
+  line-height:1.3;margin-bottom:14px;
+}
+.duan-shuo{color:var(--hui);max-width:600px;margin-bottom:44px;}
+.duan--lan{background:var(--lan);color:var(--bai);}
+.duan--lan .duan-ti{color:var(--bai);}
+.duan--lan .duan-shuo{color:rgba(255,255,255,.65);}
+.duan--bai{background:var(--bai);}
+
+/* ============ 痛点 ============ */
+.tongdian{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tongdian article{
+  background:var(--bai);border:1px solid var(--xian);border-radius:14px;
+  padding:30px 26px;
+  transition:transform .25s, box-shadow .25s, border-color .25s;
+}
+.tongdian article:hover{
+  transform:translateY(-4px);box-shadow:0 14px 30px rgba(16,28,61,.1);
+  border-color:var(--cheng);
+}
+.tongdian svg{width:52px;height:52px;margin-bottom:18px;}
+.tongdian h3{font-size:var(--zi-3);color:var(--lan);margin-bottom:10px;}
+.tongdian p{color:var(--hui);font-size:var(--zi-4);}
+
+/* ============ 课程体系 ============ */
+.jieti-tu{margin:0 auto 48px;}
+.kecheng{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:jie;}
+.kecheng article{
+  background:var(--lan-qian);border-radius:14px;padding:26px 22px;
+  border-top:4px solid var(--cheng);position:relative;
+  transition:transform .25s, background .25s;
+}
+.kecheng article:hover{transform:translateY(-4px);background:#22345f;}
+.kecheng .jie-hao{
+  font-family:var(--mono);font-size:var(--zi-5);color:var(--cheng);
+  display:block;margin-bottom:8px;
+}
+.kecheng h3{font-size:var(--zi-3);color:var(--bai);margin-bottom:4px;}
+.kecheng .nianling{font-family:var(--mono);font-size:var(--zi-5);color:rgba(255,255,255,.5);display:block;margin-bottom:12px;}
+.kecheng p{font-size:var(--zi-4);color:rgba(255,255,255,.72);}
+
+/* ============ 师资 ============ */
+.shizi{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.shizi article{
+  background:var(--bai);border:1px solid var(--xian);border-radius:14px;
+  overflow:hidden;text-align:center;
+  transition:transform .25s, box-shadow .25s;
+}
+.shizi article:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(16,28,61,.1);}
+.shizi .touxiang{background:linear-gradient(160deg,#FFE8D8,#FFD4B8);padding:26px 0 0;}
+.shizi .touxiang svg{width:132px;height:132px;margin:0 auto;}
+.shizi .neirong{padding:22px 24px 28px;}
+.shizi h3{font-size:var(--zi-3);color:var(--lan);}
+.shizi .beijing{font-family:var(--mono);font-size:var(--zi-5);color:var(--cheng);margin:4px 0 12px;}
+.shizi p{color:var(--hui);font-size:var(--zi-4);}
+.shizi blockquote{
+  margin-top:14px;padding-top:14px;border-top:1px dashed var(--xian);
+  color:var(--lan);font-size:var(--zi-4);font-weight:700;
+}
+
+/* ============ 家长评价 ============ */
+.pingjia{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.pingjia figure{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;
+  transition:border-color .25s, background .25s;
+}
+.pingjia figure:hover{border-color:var(--cheng);background:rgba(255,255,255,.1);}
+.pingjia .yinhao{font-family:var(--mono);color:var(--cheng);font-size:var(--zi-2);line-height:1;margin-bottom:12px;}
+.pingjia blockquote{color:rgba(255,255,255,.85);font-size:var(--zi-4);flex:1;}
+.pingjia figcaption{
+  margin-top:18px;font-family:var(--mono);font-size:var(--zi-5);
+  color:rgba(255,255,255,.5);
+}
+
+/* ============ 限时优惠 ============ */
+.youhui{
+  background:var(--cheng);border-radius:20px;color:var(--bai);
+  padding:52px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.youhui::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.12) 0 100%) left top / 12px 12px no-repeat,
+    linear-gradient(rgba(255,255,255,.12) 0 100%) calc(0% + 12px) calc(0% + 12px) / 12px 12px no-repeat,
+    linear-gradient(rgba(255,255,255,.12) 0 100%) right bottom / 12px 12px no-repeat,
+    linear-gradient(rgba(255,255,255,.12) 0 100%) calc(100% - 12px) calc(100% - 12px) / 12px 12px no-repeat;
+}
+.youhui .biaoqian{
+  font-family:var(--mono);font-size:var(--zi-4);letter-spacing:2px;
+  opacity:.9;margin-bottom:10px;
+}
+.youhui .jiage{font-size:var(--zi-1);font-weight:900;line-height:1.1;}
+.youhui .jiage s{font-size:var(--zi-3);font-weight:400;opacity:.7;margin-left:12px;}
+.youhui .shuoming{margin:14px auto 30px;max-width:460px;opacity:.92;}
+.daojishi{
+  display:flex;justify-content:center;gap:10px;margin-bottom:34px;
+  font-family:var(--mono);
+}
+.daojishi .ge{
+  background:var(--lan);border-radius:10px;
+  min-width:72px;padding:12px 8px 10px;
+}
+.daojishi .ge b{display:block;font-size:var(--zi-2);font-weight:700;line-height:1.1;}
+.daojishi .ge span{font-size:var(--zi-5);opacity:.6;}
+.youhui .yh-cta{
+  display:inline-block;background:var(--lan);color:var(--bai);
+  font-size:var(--zi-3);font-weight:700;padding:16px 48px;border-radius:12px;
+  transition:transform .2s, box-shadow .2s;position:relative;z-index:1;
+}
+.youhui .yh-cta:hover,.youhui .yh-cta:focus-visible{
+  transform:translateY(-2px);box-shadow:0 10px 24px rgba(16,28,61,.4);outline:none;
+}
+.youhui .mingE{font-size:var(--zi-5);opacity:.85;margin-top:14px;}
+
+/* ============ 报名表单 ============ */
+.baoming-kuang{
+  background:var(--bai);border:1px solid var(--xian);border-radius:20px;
+  padding:44px 40px;max-width:560px;margin:0 auto;
+  box-shadow:0 20px 50px rgba(16,28,61,.08);
+}
+.baoming-kuang .duan-hao{margin-bottom:8px;}
+.baoming-kuang .duan-ti{font-size:var(--zi-2);}
+.biaodan-zu{margin-top:24px;}
+.biaodan-zu label{
+  display:block;font-weight:700;color:var(--lan);
+  font-size:var(--zi-4);margin-bottom:8px;
+}
+.biaodan-zu label em{color:var(--cheng);font-style:normal;}
+.biaodan-zu input,.biaodan-zu select{
+  width:100%;height:52px;padding:0 16px;
+  border:2px solid var(--xian);border-radius:10px;
+  font-size:var(--zi-4);font-family:inherit;color:var(--mo);
+  background:var(--bai);
+  transition:border-color .2s, box-shadow .2s;
+  appearance:none;-webkit-appearance:none;
+}
+.biaodan-zu select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' fill='none' stroke='%23626B7A' stroke-width='2'/></svg>");
+  background-repeat:no-repeat;background-position:right 16px center;
+}
+.biaodan-zu input:focus,.biaodan-zu select:focus{
+  outline:none;border-color:var(--cheng);
+  box-shadow:0 0 0 4px rgba(255,92,26,.15);
+}
+.biaodan-zu .cuowu{
+  display:none;color:#D93025;font-size:var(--zi-5);margin-top:6px;
+}
+.biaodan-zu.you-cuo input,.biaodan-zu.you-cuo select{border-color:#D93025;}
+.biaodan-zu.you-cuo .cuowu{display:block;}
+.tijiao-niu{
+  width:100%;height:58px;margin-top:30px;
+  background:var(--cheng);color:var(--bai);
+  font-size:var(--zi-3);font-weight:700;font-family:inherit;
+  border:none;border-radius:12px;cursor:pointer;
+  transition:background .2s, transform .2s;
+}
+.tijiao-niu:hover,.tijiao-niu:focus-visible{background:var(--cheng-shen);transform:translateY(-1px);outline:none;}
+.yinsi-tiao{font-size:var(--zi-5);color:var(--hui);text-align:center;margin-top:14px;}
+
+/* 成功弹层 */
+.tancen{
+  position:fixed;inset:0;z-index:100;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(16,28,61,.72);padding:24px;
+}
+.tancen.xianshi{display:flex;}
+.tancen-nei{
+  background:var(--bai);border-radius:20px;max-width:400px;width:100%;
+  padding:44px 34px;text-align:center;
+  border-top:6px solid var(--cheng);
+}
+.tancen-nei svg{width:76px;height:76px;margin:0 auto 20px;}
+.tancen-nei h3{font-size:var(--zi-2);color:var(--lan);margin-bottom:12px;}
+.tancen-nei p{color:var(--hui);}
+.tancen-nei p b{color:var(--cheng);}
+.tancen-guan{
+  margin-top:26px;display:inline-block;background:var(--lan);color:var(--bai);
+  border:none;font-family:inherit;font-size:var(--zi-4);font-weight:700;
+  padding:13px 40px;border-radius:10px;cursor:pointer;
+  transition:background .2s;
+}
+.tancen-guan:hover,.tancen-guan:focus-visible{background:var(--lan-qian);outline:none;}
+
+/* ============ FAQ ============ */
+.faq{max-width:720px;margin:0 auto;}
+.faq details{
+  background:var(--bai);border:1px solid var(--xian);border-radius:12px;
+  margin-bottom:14px;overflow:hidden;
+}
+.faq details[open]{border-color:var(--cheng);}
+.faq summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 24px;min-height:64px;
+  font-weight:700;color:var(--lan);font-size:var(--zi-4);
+  transition:background .2s;
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary:hover,.faq summary:focus-visible{background:var(--zhi);outline:none;}
+.faq summary svg{flex:none;width:18px;height:18px;transition:transform .25s;}
+.faq details[open] summary svg{transform:rotate(45deg);}
+.faq .da{padding:0 24px 22px;color:var(--hui);}
+
+/* ============ 页脚 ============ */
+.yejiao{background:var(--lan);color:rgba(255,255,255,.6);padding:44px 0 90px;}
+.yejiao .rong{display:flex;flex-wrap:wrap;gap:14px 40px;align-items:center;justify-content:space-between;}
+.yejiao .lianxi{font-size:var(--zi-4);line-height:2;}
+.yejiao .lianxi b{color:var(--bai);}
+.yejiao .shengming{
+  width:100%;margin-top:22px;padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:var(--zi-5);color:rgba(255,255,255,.4);
+}
+
+/* ============ 吸底 CTA(仅移动端) ============ */
+.xidi{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  display:none;align-items:center;gap:14px;
+  background:var(--lan);border-top:2px solid var(--cheng);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+}
+.xidi .jia{color:var(--bai);font-family:var(--mono);line-height:1.25;flex:none;}
+.xidi .jia b{color:var(--cheng);font-size:var(--zi-3);}
+.xidi .jia span{display:block;font-size:var(--zi-5);opacity:.6;}
+.xidi a{
+  flex:1;text-align:center;background:var(--cheng);color:var(--bai);
+  font-weight:700;font-size:var(--zi-4);
+  padding:13px 10px;border-radius:10px;min-height:48px;
+  transition:background .2s;
+}
+.xidi a:hover,.xidi a:focus-visible{background:var(--cheng-shen);outline:none;}
+
+/* ============ 响应式 ============ */
+@media (max-width: 900px){
+  .tongdian,.shizi,.pingjia{grid-template-columns:1fr 1fr;}
+  .kecheng{grid-template-columns:1fr 1fr;}
+  .tongdian article:last-child{grid-column:1 / -1;}
+  .shizi article:last-child{grid-column:1 / -1;max-width:420px;margin:0 auto;width:100%;}
+  .pingjia figure:last-child{grid-column:1 / -1;}
+}
+@media (max-width: 768px){
+  .hanbao{display:block;}
+  .dh-lianjie{
+    position:fixed;top:64px;left:0;right:0;bottom:0;z-index:49;
+    background:var(--lan);
+    flex-direction:column;align-items:stretch;gap:0;
+    padding:24px;display:none;
+  }
+  .dh-lianjie.zhankai{display:flex;}
+  .dh-lianjie a{
+    font-size:var(--zi-3);font-weight:700;padding:18px 12px;
+    border-bottom:1px solid rgba(255,255,255,.1);border-radius:0;min-height:56px;
+  }
+  .dh-cta{margin:24px 0 0;text-align:center;border-radius:12px;border-bottom:none;}
+  .sp-jixiangwu{position:static;width:180px;margin:40px auto 0;}
+  .sp-xing{display:none;}
+  .shouping{padding:56px 0 64px;}
+  .duan{padding:64px 0;}
+  .xinren{gap:14px 24px;}
+  .xidi{display:flex;}
+  .yejiao{padding-bottom:130px;}
+}
+@media (max-width: 480px){
+  .tongdian,.shizi,.pingjia,.kecheng{grid-template-columns:1fr;}
+  .shizi article:last-child{max-width:none;}
+  .youhui{padding:44px 22px;border-radius:16px;}
+  .daojishi .ge{min-width:0;flex:1;max-width:80px;}
+  .baoming-kuang{padding:34px 22px;}
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="daohang">
+  <div class="daohang-nei">
+    <a class="logo" href="#shouping" aria-label="星码少儿编程 首页">
+      <svg viewBox="0 0 32 32" role="img" aria-hidden="true"><title>星码像素星标</title>
+        <rect x="12" y="0" width="8" height="8" fill="#FF5C1A"/>
+        <rect x="12" y="24" width="8" height="8" fill="#FF5C1A"/>
+        <rect x="0" y="12" width="8" height="8" fill="#FF5C1A"/>
+        <rect x="24" y="12" width="8" height="8" fill="#FF5C1A"/>
+        <rect x="12" y="12" width="8" height="8" fill="#FFFFFF"/>
+      </svg>
+      星码少儿编程<small>{ xingma }</small>
+    </a>
+    <button class="hanbao" id="hanbaoNiu" aria-expanded="false" aria-controls="dhLianjie" aria-label="打开菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="dh-lianjie" id="dhLianjie" aria-label="页面导航">
+      <a href="#kecheng">课程体系</a>
+      <a href="#shizi">师资团队</a>
+      <a href="#pingjia">家长评价</a>
+      <a href="#faq">常见问题</a>
+      <a class="dh-cta" href="#baoming">¥9.9 领体验课</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ① 首屏 -->
+<section class="shouping" id="shouping">
+  <svg class="sp-xing" style="top:12%;left:6%;width:36px;height:36px;opacity:.35" viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="12" y="0" width="8" height="8" fill="#FF5C1A"/><rect x="12" y="24" width="8" height="8" fill="#FF5C1A"/>
+    <rect x="0" y="12" width="8" height="8" fill="#FF5C1A"/><rect x="24" y="12" width="8" height="8" fill="#FF5C1A"/>
+    <rect x="12" y="12" width="8" height="8" fill="#FF5C1A"/>
+  </svg>
+  <svg class="sp-xing" style="top:58%;right:10%;width:24px;height:24px;opacity:.25" viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="12" y="0" width="8" height="8" fill="#FFF7EE"/><rect x="12" y="24" width="8" height="8" fill="#FFF7EE"/>
+    <rect x="0" y="12" width="8" height="8" fill="#FFF7EE"/><rect x="24" y="12" width="8" height="8" fill="#FFF7EE"/>
+    <rect x="12" y="12" width="8" height="8" fill="#FFF7EE"/>
+  </svg>
+  <div class="rong">
+    <p class="sp-zhushi">// 暑期体验课报名中 · 7 月 31 日截止</p>
+    <h1 class="sp-biaoyu">7-12 岁孩子的<br><span class="xiahua">第一节编程课</span><br>从一个小游戏开始</h1>
+    <p class="sp-fubiao">不背语法、不刷题。90 分钟里,孩子自己动手拼出一个能玩的小作品,带着成就感回家——这是星码坚持了七年的第一课。</p>
+    <a class="sp-cta" href="#baoming">¥9.9 领取体验课<small>原价 ¥199 · 含 90 分钟课程与学习力测评</small></a>
+    <ul class="xinren">
+      <li><b>2019</b><span>年创办,专注少儿编程</span></li>
+      <li><b>1200+</b><span>在读学员(杭州 3 个校区)</span></li>
+      <li><b>41%</b><span>新学员来自老家长转介绍</span></li>
+    </ul>
+  </div>
+  <svg class="sp-jixiangwu" viewBox="0 0 200 220" role="img" aria-label="星码像素机器人吉祥物">
+    <title>像素机器人吉祥物</title>
+    <!-- 天线 -->
+    <rect x="92" y="8" width="16" height="16" fill="#FF5C1A"/>
+    <rect x="96" y="24" width="8" height="16" fill="#FFF7EE"/>
+    <!-- 头 -->
+    <rect x="52" y="40" width="96" height="72" rx="10" fill="#FFF7EE"/>
+    <rect x="64" y="58" width="28" height="28" rx="6" fill="#101C3D"/>
+    <rect x="108" y="58" width="28" height="28" rx="6" fill="#101C3D"/>
+    <rect x="72" y="66" width="10" height="10" fill="#FF5C1A"/>
+    <rect x="116" y="66" width="10" height="10" fill="#FF5C1A"/>
+    <rect x="82" y="96" width="36" height="6" rx="3" fill="#FF5C1A"/>
+    <!-- 耳 -->
+    <rect x="38" y="62" width="14" height="28" rx="4" fill="#FF5C1A"/>
+    <rect x="148" y="62" width="14" height="28" rx="4" fill="#FF5C1A"/>
+    <!-- 身体 -->
+    <rect x="62" y="120" width="76" height="58" rx="10" fill="#FF5C1A"/>
+    <!-- 胸口代码括号 -->
+    <text x="100" y="158" text-anchor="middle" font-family="Consolas, monospace" font-size="28" font-weight="bold" fill="#FFF7EE">{&#8201;}</text>
+    <!-- 手 -->
+    <rect x="42" y="128" width="16" height="34" rx="6" fill="#FFF7EE"/>
+    <rect x="142" y="128" width="16" height="34" rx="6" fill="#FFF7EE"/>
+    <!-- 脚 -->
+    <rect x="70" y="182" width="22" height="22" rx="5" fill="#FFF7EE"/>
+    <rect x="108" y="182" width="22" height="22" rx="5" fill="#FFF7EE"/>
+  </svg>
+</section>
+
+<!-- ② 痛点共鸣 -->
+<section class="duan" id="tongdian">
+  <div class="rong">
+    <p class="duan-hao">// 01 家长的三个瞬间</p>
+    <h2 class="duan-ti">这些场景,是不是每天都在你家上演?</h2>
+    <p class="duan-shuo">我们接待过两千多位家长,报名前聊得最多的,就是下面这三件事。</p>
+    <div class="tongdian">
+      <article>
+        <svg viewBox="0 0 52 52" role="img" aria-label="平板电脑图标"><title>屏幕拉锯战</title>
+          <rect x="8" y="6" width="36" height="40" rx="4" fill="none" stroke="#101C3D" stroke-width="3"/>
+          <rect x="14" y="12" width="24" height="22" rx="2" fill="#FF5C1A" opacity=".2"/>
+          <path d="M20 20l5 5-5 5M30 20l-4 10" stroke="#FF5C1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="26" cy="41" r="2.5" fill="#101C3D"/>
+        </svg>
+        <h3>屏幕时间管不住</h3>
+        <p>平板一抱就是两小时,短视频和游戏一个接一个。没收就闹,不没收又心慌——每天都在拉锯。</p>
+      </article>
+      <article>
+        <svg viewBox="0 0 52 52" role="img" aria-label="半途而废的兴趣班图标"><title>兴趣班半途而废</title>
+          <path d="M8 42h10V26H8zM21 42h10V16H21z" fill="#FF5C1A" opacity=".25"/>
+          <path d="M8 42h10V26H8zM21 42h10V16H21z" fill="none" stroke="#101C3D" stroke-width="3"/>
+          <path d="M34 42h10V8H34z" fill="none" stroke="#101C3D" stroke-width="3" stroke-dasharray="4 4"/>
+          <path d="M12 20l6-6M18 20l-6-6" stroke="#FF5C1A" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <h3>兴趣班总是半途而废</h3>
+        <p>画画、钢琴、围棋轮着试,新鲜劲一过就不肯去。钱花了不少,能坚持下来、拿得出作品的没几个。</p>
+      </article>
+      <article>
+        <svg viewBox="0 0 52 52" role="img" aria-label="问号图标"><title>不知道编程靠不靠谱</title>
+          <rect x="6" y="10" width="40" height="30" rx="6" fill="none" stroke="#101C3D" stroke-width="3"/>
+          <path d="M18 40l-4 8M34 40l4 8" stroke="#101C3D" stroke-width="3" stroke-linecap="round"/>
+          <text x="26" y="33" text-anchor="middle" font-family="Consolas, monospace" font-size="22" font-weight="bold" fill="#FF5C1A">?</text>
+        </svg>
+        <h3>都说编程重要,却不敢报</h3>
+        <p>怕是营销噱头,怕孩子听不懂坐不住,更怕一上来就被推销年课。想让孩子试试,又迈不出第一步。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 课程体系 -->
+<section class="duan duan--bai" id="kecheng">
+  <div class="rong">
+    <p class="duan-hao">// 02 课程体系</p>
+    <h2 class="duan-ti">四阶进阶,从拖积木到打竞赛</h2>
+    <p class="duan-shuo">每一阶都有明确的结课作品,升阶看孩子的实际水平,不按缴费进度。</p>
+    <svg class="jieti-tu" viewBox="0 0 800 200" role="img" aria-label="四阶课程进阶路径图">
+      <title>课程四阶进阶路径:图形化启蒙、Python 入门、算法思维、竞赛方向</title>
+      <!-- 四阶实色阶梯,统一底边 y=180 -->
+      <rect x="20"  y="140" width="180" height="40"  rx="6" fill="#FFDCC6"/>
+      <rect x="210" y="110" width="180" height="70"  rx="6" fill="#FFBB92"/>
+      <rect x="400" y="80"  width="180" height="100" rx="6" fill="#FF8A4D"/>
+      <rect x="590" y="50"  width="180" height="130" rx="6" fill="#FF5C1A"/>
+      <!-- 标签:各自块内垂直居中 -->
+      <text x="110" y="166" text-anchor="middle" font-family="Consolas, monospace" font-size="17" font-weight="bold" fill="#101C3D">L1 图形化</text>
+      <text x="300" y="151" text-anchor="middle" font-family="Consolas, monospace" font-size="17" font-weight="bold" fill="#101C3D">L2 Python</text>
+      <text x="490" y="136" text-anchor="middle" font-family="Consolas, monospace" font-size="17" font-weight="bold" fill="#FFF7EE">L3 算法</text>
+      <text x="680" y="121" text-anchor="middle" font-family="Consolas, monospace" font-size="17" font-weight="bold" fill="#FFF7EE">L4 竞赛</text>
+      <!-- 起点小旗:插在 L1 顶边 -->
+      <path d="M52 140v-32M52 108l18 7-18 7" fill="none" stroke="#101C3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- 像素星:站在 L4 顶边 -->
+      <g transform="translate(665 16)">
+        <rect x="10" y="0" width="10" height="10" fill="#FF5C1A"/><rect x="10" y="20" width="10" height="10" fill="#FF5C1A"/>
+        <rect x="0" y="10" width="10" height="10" fill="#FF5C1A"/><rect x="20" y="10" width="10" height="10" fill="#FF5C1A"/>
+        <rect x="10" y="10" width="10" height="10" fill="#101C3D"/>
+      </g>
+    </svg>
+    <div class="kecheng">
+      <article>
+        <span class="jie-hao">// L1</span>
+        <h3>图形化启蒙</h3>
+        <span class="nianling">适合 7-9 岁 · 零基础</span>
+        <p>用 Scratch 积木拖出会动的角色和能玩的小游戏。先建立「我能做出来」的信心,再谈其他。</p>
+      </article>
+      <article>
+        <span class="jie-hao">// L2</span>
+        <h3>Python 入门</h3>
+        <span class="nianling">适合 9-11 岁</span>
+        <p>从积木换成真代码。变量、循环、条件不靠背,写文字冒险游戏和查天气的小程序,用会为止。</p>
+      </article>
+      <article>
+        <span class="jie-hao">// L3</span>
+        <h3>算法思维</h3>
+        <span class="nianling">适合 10-12 岁</span>
+        <p>排序、枚举、递归,配 CSP-J 入门题单。重点练一件事:把一道大题拆成能下手的小步骤。</p>
+      </article>
+      <article>
+        <span class="jie-hao">// L4</span>
+        <h3>竞赛方向</h3>
+        <span class="nianling">适合 12 岁以上</span>
+        <p>面向 CSP-J/S 与信奥路线的小班,按孩子的实际水平定目标、定节奏,不搞大锅饭式刷题。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 师资 -->
+<section class="duan" id="shizi">
+  <div class="rong">
+    <p class="duan-hao">// 03 师资团队</p>
+    <h2 class="duan-ti">教孩子的人,先得会写代码,更得懂孩子</h2>
+    <p class="duan-shuo">全职教师,入职前过两关:技术笔试 + 给真实孩子试讲。</p>
+    <div class="shizi">
+      <article>
+        <div class="touxiang">
+          <svg viewBox="0 0 132 132" role="img" aria-label="陈一帆老师扁平头像插画">
+            <title>陈一帆老师头像</title>
+            <circle cx="66" cy="70" r="40" fill="#F5C09A"/>
+            <path d="M26 70a40 40 0 0 1 80 0v-14a40 26 0 0 0-80 0z" fill="#101C3D"/>
+            <path d="M26 62c0-24 18-36 40-36s40 12 40 36l-6-4c-8 4-22-8-34-8s-26 12-34 8z" fill="#101C3D"/>
+            <rect x="40" y="60" width="20" height="16" rx="8" fill="none" stroke="#101C3D" stroke-width="3"/>
+            <rect x="72" y="60" width="20" height="16" rx="8" fill="none" stroke="#101C3D" stroke-width="3"/>
+            <path d="M60 68h12" stroke="#101C3D" stroke-width="3"/>
+            <circle cx="50" cy="68" r="3" fill="#101C3D"/>
+            <circle cx="82" cy="68" r="3" fill="#101C3D"/>
+            <path d="M54 90q12 10 24 0" fill="none" stroke="#B26B3A" stroke-width="3" stroke-linecap="round"/>
+            <rect x="30" y="106" width="72" height="26" rx="12" fill="#FF5C1A"/>
+          </svg>
+        </div>
+        <div class="neirong">
+          <h3>陈一帆 <span aria-hidden="true">·</span> 教学主管</h3>
+          <p class="beijing">// 前电商平台后端工程师</p>
+          <p>写了 6 年服务端代码后转做少儿编程,带课 4 年。最擅长把递归讲成「俄罗斯套娃找糖」。</p>
+          <blockquote>"先让孩子笑,再让孩子想。"</blockquote>
+        </div>
+      </article>
+      <article>
+        <div class="touxiang">
+          <svg viewBox="0 0 132 132" role="img" aria-label="苏晓雯老师扁平头像插画">
+            <title>苏晓雯老师头像</title>
+            <path d="M32 118c0-30 4-64 34-64s34 34 34 64z" fill="#101C3D"/>
+            <circle cx="66" cy="66" r="38" fill="#F8CBA8"/>
+            <path d="M28 66c0-26 16-40 38-40s38 14 38 40c-6-14-16-18-38-18s-32 4-38 18z" fill="#101C3D"/>
+            <circle cx="52" cy="66" r="3.5" fill="#101C3D"/>
+            <circle cx="80" cy="66" r="3.5" fill="#101C3D"/>
+            <path d="M56 84q10 8 20 0" fill="none" stroke="#B26B3A" stroke-width="3" stroke-linecap="round"/>
+            <rect x="86" y="38" width="14" height="14" fill="#FF5C1A" transform="rotate(15 93 45)"/>
+            <rect x="32" y="104" width="68" height="28" rx="12" fill="#101C3D"/>
+            <rect x="58" y="104" width="16" height="28" fill="#FF5C1A"/>
+          </svg>
+        </div>
+        <div class="neirong">
+          <h3>苏晓雯 <span aria-hidden="true">·</span> CSP-J 教练</h3>
+          <p class="beijing">// 师范院校计算机专业</p>
+          <p>既懂课标也懂考纲,带出过两届 CSP-J 获奖学员。批改作业出了名的细,注释都要求写人话。</p>
+          <blockquote>"孩子自己找到的 bug,才算数。"</blockquote>
+        </div>
+      </article>
+      <article>
+        <div class="touxiang">
+          <svg viewBox="0 0 132 132" role="img" aria-label="周子航老师扁平头像插画">
+            <title>周子航老师头像</title>
+            <circle cx="66" cy="68" r="40" fill="#E8B48C"/>
+            <path d="M26 64c2-22 18-34 40-34s38 12 40 34c-4-8-10-12-14-10 2-8-6-14-10-10-4-6-14-8-16-2-8-4-16 0-16 6-8-2-16 6-14 12-4-2-8 0-10 4z" fill="#101C3D"/>
+            <circle cx="52" cy="70" r="3.5" fill="#101C3D"/>
+            <circle cx="80" cy="70" r="3.5" fill="#101C3D"/>
+            <path d="M52 88q14 12 28 0" fill="none" stroke="#A55E2E" stroke-width="3" stroke-linecap="round"/>
+            <path d="M44 58q8-6 16 0M72 58q8-6 16 0" fill="none" stroke="#101C3D" stroke-width="3" stroke-linecap="round"/>
+            <rect x="30" y="108" width="72" height="24" rx="12" fill="#FFF7EE" stroke="#101C3D" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="neirong">
+          <h3>周子航 <span aria-hidden="true">·</span> 图形化课程负责人</h3>
+          <p class="beijing">// 8 年少儿教学经验</p>
+          <p>陪孩子做过 200 多个 Scratch 作品,课堂口头禅是「先跑起来,再改漂亮」。低龄段家长点名率最高。</p>
+          <blockquote>"作品能玩,孩子才肯留下来。"</blockquote>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 家长评价 -->
+<section class="duan duan--lan" id="pingjia">
+  <div class="rong">
+    <p class="duan-hao">// 04 家长怎么说</p>
+    <h2 class="duan-ti">一字未改,来自结课回访记录</h2>
+    <div class="pingjia">
+      <figure>
+        <div class="yinhao" aria-hidden="true">&gt;_</div>
+        <blockquote>以前回家就抢平板刷视频,现在抢电脑是为了改他那个接水果的小游戏。喊他关机还跟我讨价还价,说"再修一个 bug 就好"。</blockquote>
+        <figcaption>// 李妈妈 · 孩子 8 岁 · L1 在读</figcaption>
+      </figure>
+      <figure>
+        <div class="yinhao" aria-hidden="true">&gt;_</div>
+        <blockquote>本来只想 9 块 9 试一节,结果下课出来第一句话是"妈妈,我做了个会动的生日贺卡"。现在每周六自己定闹钟去上课,不用催。</blockquote>
+        <figcaption>// 郑妈妈 · 孩子 7 岁 · 体验课转报</figcaption>
+      </figure>
+      <figure>
+        <div class="yinhao" aria-hidden="true">&gt;_</div>
+        <blockquote>数学应用题以前读两遍都读不进去。学了大半年,老师说他现在会自己把题拆成小步骤一步步来。这个变化,比会写代码本身更值。</blockquote>
+        <figcaption>// 王爸爸 · 孩子 11 岁 · L3 在读</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 限时优惠 -->
+<section class="duan" id="youhui">
+  <div class="rong">
+    <div class="youhui">
+      <p class="biaoqian">// 暑期限时 · 仅限首次到店</p>
+      <p class="jiage">¥9.9<s>原价 ¥199</s></p>
+      <p class="shuoming">90 分钟体验课 + 一对一学习力测评 + 课后给家长的 15 分钟反馈。上完不合适,一句话就退。</p>
+      <div class="daojishi" id="daojishi" aria-label="距报名截止倒计时">
+        <div class="ge"><b id="djsTian">--</b><span>天</span></div>
+        <div class="ge"><b id="djsShi">--</b><span>时</span></div>
+        <div class="ge"><b id="djsFen">--</b><span>分</span></div>
+        <div class="ge"><b id="djsMiao">--</b><span>秒</span></div>
+      </div>
+      <a class="yh-cta" href="#baoming">立即锁定名额</a>
+      <p class="mingE">2026-07-31 23:59 截止 · 每校区每周仅开放 20 个体验名额</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ 报名表单 -->
+<section class="duan duan--bai" id="baoming">
+  <div class="rong">
+    <div class="baoming-kuang">
+      <p class="duan-hao">// 05 预约体验课</p>
+      <h2 class="duan-ti">留下联系方式<br>今天就能约上</h2>
+      <form id="baomingBiao" novalidate>
+        <div class="biaodan-zu" id="zuChenghu">
+          <label for="chenghu">家长称呼 <em>*</em></label>
+          <input type="text" id="chenghu" name="chenghu" placeholder="例:李妈妈 / 王先生" autocomplete="name">
+          <p class="cuowu">请填写您的称呼</p>
+        </div>
+        <div class="biaodan-zu" id="zuShouji">
+          <label for="shouji">手机号 <em>*</em></label>
+          <input type="tel" id="shouji" name="shouji" placeholder="仅用于老师联系您,不做其他用途" maxlength="11" autocomplete="tel">
+          <p class="cuowu">请填写正确的 11 位手机号</p>
+        </div>
+        <div class="biaodan-zu" id="zuNianling">
+          <label for="nianling">孩子年龄段 <em>*</em></label>
+          <select id="nianling" name="nianling">
+            <option value="">请选择孩子的年龄段</option>
+            <option value="7-9">7-9 岁(图形化启蒙)</option>
+            <option value="9-11">9-11 岁(Python 入门)</option>
+            <option value="10-12">10-12 岁(算法思维)</option>
+            <option value="12+">12 岁以上(竞赛方向)</option>
+          </select>
+          <p class="cuowu">请选择孩子的年龄段</p>
+        </div>
+        <button type="submit" class="tijiao-niu">提交,¥9.9 锁定体验课</button>
+        <p class="yinsi-tiao">提交即视为同意老师通过电话与您联系,信息仅用于本次课程安排。</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ FAQ -->
+<section class="duan" id="faq">
+  <div class="rong">
+    <p class="duan-hao">// 06 常见问题</p>
+    <h2 class="duan-ti">报名前,家长最常问的四件事</h2>
+    <div class="faq">
+      <details>
+        <summary>孩子零基础、英文单词都认不全,能跟上吗?
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v14M2 9h14" stroke="#FF5C1A" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="da">能。L1 图形化阶段用的是中文积木块,拖拽就能拼,不需要打字、不需要英文基础。等孩子升到 Python 阶段,常用的二三十个单词早在项目里见熟了,不用单独背。</p>
+      </details>
+      <details>
+        <summary>¥9.9 上完体验课,会不会被反复推销年课?
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v14M2 9h14" stroke="#FF5C1A" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="da">课后老师会给您 15 分钟反馈,讲清孩子适不适合、适合哪一阶,然后把课程表和价格发给您,决定权在您。我们有 41% 的学员来自老家长转介绍,靠的不是追着推销。</p>
+      </details>
+      <details>
+        <summary>一节课多长?是线上还是线下?
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v14M2 9h14" stroke="#FF5C1A" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="da">正式课每次 90 分钟,一半时间动手做项目。以线下小班(≤8 人)为主,杭州西湖、拱墅、滨江各有校区;L3 以上提供线上直播班,同一位老师带到底。</p>
+      </details>
+      <details>
+        <summary>学编程会不会加重负担、伤眼睛?
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v14M2 9h14" stroke="#FF5C1A" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="da">每周一次课加一个 20 分钟左右的小任务,不布置刷题作业。课堂用 24 寸大屏、每 30 分钟安排离屏活动。多数家长的反馈是:孩子对着屏幕的总时长没变,内容从刷视频换成了做作品。</p>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 页脚 -->
+<footer class="yejiao">
+  <div class="rong">
+    <div class="lianxi">
+      <b>星码少儿编程(杭州)</b><br>
+      咨询电话:138****6520(周老师)<br>
+      校区:杭州市 文三路 · 大关路 · 江南大道
+    </div>
+    <div class="lianxi">
+      <b>开课时间</b><br>
+      周二至周日 09:00-20:00<br>
+      体验课需提前 1 天预约
+    </div>
+    <p class="shengming">本站为王工建站演示案例 · 企业与数据均为虚构</p>
+  </div>
+</footer>
+
+<!-- 移动端吸底 CTA -->
+<div class="xidi" id="xidi">
+  <div class="jia"><b>¥9.9</b><span>原价 ¥199</span></div>
+  <a href="#baoming">领取体验课名额</a>
+</div>
+
+<!-- 成功弹层 -->
+<div class="tancen" id="tancen" role="dialog" aria-modal="true" aria-labelledby="tancenTi">
+  <div class="tancen-nei">
+    <svg viewBox="0 0 76 76" role="img" aria-label="报名成功"><title>报名成功像素星</title>
+      <rect x="28" y="0" width="20" height="20" fill="#FF5C1A"/>
+      <rect x="28" y="56" width="20" height="20" fill="#FF5C1A"/>
+      <rect x="0" y="28" width="20" height="20" fill="#FF5C1A"/>
+      <rect x="56" y="28" width="20" height="20" fill="#FF5C1A"/>
+      <rect x="28" y="28" width="20" height="20" fill="#101C3D"/>
+      <path d="M33 38l4 4 7-8" stroke="#FFF7EE" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h3 id="tancenTi">已收到您的报名</h3>
+    <p>今天 <b>18:00 前</b>会有老师电话联系您,确认体验课时间与就近校区。请留意 0571 开头的来电。</p>
+    <button type="button" class="tancen-guan" id="tancenGuan">好的,我知道了</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- 汉堡菜单 ---- */
+  var hanbao = document.getElementById("hanbaoNiu");
+  var lianjie = document.getElementById("dhLianjie");
+  hanbao.addEventListener("click", function(){
+    var kai = hanbao.getAttribute("aria-expanded") === "true";
+    hanbao.setAttribute("aria-expanded", String(!kai));
+    hanbao.setAttribute("aria-label", kai ? "打开菜单" : "关闭菜单");
+    lianjie.classList.toggle("zhankai", !kai);
+  });
+  lianjie.addEventListener("click", function(e){
+    if (e.target.tagName === "A") {
+      hanbao.setAttribute("aria-expanded", "false");
+      hanbao.setAttribute("aria-label", "打开菜单");
+      lianjie.classList.remove("zhankai");
+    }
+  });
+
+  /* ---- 倒计时:截止 2026-07-31 23:59:59(北京时间,写死) ---- */
+  var jiezhi = new Date("2026-07-31T23:59:59+08:00").getTime();
+  var djsTian = document.getElementById("djsTian");
+  var djsShi = document.getElementById("djsShi");
+  var djsFen = document.getElementById("djsFen");
+  var djsMiao = document.getElementById("djsMiao");
+  function buling(n){ return n < 10 ? "0" + n : String(n); }
+  function shuaxin(){
+    var cha = jiezhi - Date.now();
+    if (cha <= 0) {
+      djsTian.textContent = "00"; djsShi.textContent = "00";
+      djsFen.textContent = "00"; djsMiao.textContent = "00";
+      document.getElementById("daojishi").setAttribute("aria-label", "本期报名已截止");
+      clearInterval(djsQi);
+      return;
+    }
+    djsTian.textContent = buling(Math.floor(cha / 86400000));
+    djsShi.textContent = buling(Math.floor(cha / 3600000) % 24);
+    djsFen.textContent = buling(Math.floor(cha / 60000) % 60);
+    djsMiao.textContent = buling(Math.floor(cha / 1000) % 60);
+  }
+  shuaxin();
+  var djsQi = setInterval(shuaxin, 1000);
+
+  /* ---- 表单校验 + 假提交 ---- */
+  var biao = document.getElementById("baomingBiao");
+  var tancen = document.getElementById("tancen");
+  var zuChenghu = document.getElementById("zuChenghu");
+  var zuShouji = document.getElementById("zuShouji");
+  var zuNianling = document.getElementById("zuNianling");
+
+  function biaoji(zu, cuo){ zu.classList.toggle("you-cuo", cuo); }
+
+  biao.addEventListener("submit", function(e){
+    e.preventDefault();
+    var chenghu = document.getElementById("chenghu").value.trim();
+    var shouji = document.getElementById("shouji").value.trim();
+    var nianling = document.getElementById("nianling").value;
+
+    var cuoChenghu = chenghu === "";
+    var cuoShouji = !/^1[3-9]\d{9}$/.test(shouji);
+    var cuoNianling = nianling === "";
+
+    biaoji(zuChenghu, cuoChenghu);
+    biaoji(zuShouji, cuoShouji);
+    biaoji(zuNianling, cuoNianling);
+
+    if (cuoChenghu || cuoShouji || cuoNianling) {
+      var shouCuo = document.querySelector(".biaodan-zu.you-cuo input, .biaodan-zu.you-cuo select");
+      if (shouCuo) shouCuo.focus();
+      return;
+    }
+    tancen.classList.add("xianshi");
+    document.getElementById("tancenGuan").focus();
+    biao.reset();
+  });
+
+  ["chenghu","shouji","nianling"].forEach(function(id){
+    document.getElementById(id).addEventListener("input", function(){
+      this.closest(".biaodan-zu").classList.remove("you-cuo");
+    });
+  });
+
+  document.getElementById("tancenGuan").addEventListener("click", function(){
+    tancen.classList.remove("xianshi");
+  });
+  tancen.addEventListener("click", function(e){
+    if (e.target === tancen) tancen.classList.remove("xianshi");
+  });
+})();
+</script>
+</body>
+</html>

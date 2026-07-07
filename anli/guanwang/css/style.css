@@ -1,0 +1,381 @@
+/* ============================================================
+   泰昌食品机械有限公司 · 企业官网(演示案例)
+   企业蓝绿 + 深墨青 + 麦黄点缀 · 标准大气官网范式
+   签名元素:首屏悬浮入口卡片带 / 卡片顶部渐变色条
+   ============================================================ */
+:root{
+  --zhu:#0F8B7E;        /* 主色:企业蓝绿 */
+  --zhu-shen:#0A6157;   /* 主色加深(hover) */
+  --mo:#0B3C38;         /* 深墨青(标题/深色区) */
+  --mo-shen:#07302C;    /* 页脚深底 */
+  --mai:#E8A33D;        /* 麦黄点缀 */
+  --di:#F4F9F8;         /* 浅色区底 */
+  --tint:#E3F1EE;       /* 蓝绿浅晕 */
+  --zi:#3A4A47;         /* 正文 */
+  --zi-qian:#71827E;    /* 次要文字 */
+  --xian:#DCE9E6;       /* 分隔线 */
+  --bai:#FFFFFF;
+  --jianbian:linear-gradient(90deg,var(--zhu),var(--mai));
+  --han:"Microsoft YaHei","PingFang SC",sans-serif;
+  --yin:0 6px 24px rgba(11,60,56,.08);
+  --yin-fu:0 12px 32px rgba(11,60,56,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--han);color:var(--zi);background:var(--bai);
+  font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--mai);outline-offset:2px}
+
+/* 字阶(5 级):40 首屏主题 / 26 区块标题 / 18 卡片标题 / 15 正文 / 13 标注 */
+h1{font-size:40px;line-height:1.3;font-weight:700}
+h2{font-size:26px;line-height:1.4;color:var(--mo);font-weight:700}
+h3{font-size:18px;line-height:1.5;color:var(--mo);font-weight:700}
+.zhu13{font-size:13px;color:var(--zi-qian)}
+
+.wai{max-width:1160px;margin:0 auto;padding:0 28px}
+
+/* ---------- 按钮体系(胶囊) ---------- */
+.niu{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:46px;padding:0 30px;border-radius:999px;font-size:15px;font-weight:700;
+  border:none;transition:background .2s,color .2s,box-shadow .2s,transform .2s}
+.niu-shi{background:var(--zhu);color:#fff}
+.niu-shi:hover{background:var(--zhu-shen);box-shadow:0 6px 16px rgba(15,139,126,.35)}
+.niu-kong{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.75)}
+.niu-kong:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.niu-mai{background:var(--mai);color:#5A3E0C}
+.niu-mai:hover{background:#D99327;box-shadow:0 6px 16px rgba(232,163,61,.4)}
+.niu-xi{min-height:40px;padding:0 22px;font-size:14px;background:var(--tint);color:var(--zhu-shen)}
+.niu-xi:hover{background:var(--zhu);color:#fff}
+
+/* ---------- 主导航 ---------- */
+.dh{background:var(--bai);position:sticky;top:0;z-index:50;
+  box-shadow:0 1px 0 var(--xian)}
+.dh::after{content:"";display:block;height:3px;background:var(--jianbian)}
+.dh-nei{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo svg{width:46px;height:46px;flex:none}
+.logo-ming{font-size:20px;font-weight:700;color:var(--mo);line-height:1.25;display:block}
+.logo-fu{font-size:11px;color:var(--zi-qian);letter-spacing:2px;display:block}
+.dh-cai{display:flex;align-items:center;gap:30px}
+.dh-cai>a{font-size:15px;color:var(--mo);padding:6px 2px;position:relative;transition:color .2s}
+.dh-cai>a:not(.niu)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;
+  background:var(--zhu);transform:scaleX(0);transition:transform .2s;border-radius:2px}
+.dh-cai>a:not(.niu):hover{color:var(--zhu)}
+.dh-cai>a:not(.niu):hover::after{transform:scaleX(1)}
+.dh-cai>a.dangqian{color:var(--zhu);font-weight:700}
+.dh-cai>a.dangqian::after{transform:scaleX(1)}
+.dh-cai .niu{min-height:42px;padding:0 24px;font-size:14px}
+.hanbao{display:none;width:46px;height:46px;border:none;background:none;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:8px}
+.hanbao span{display:block;width:22px;height:2.5px;background:var(--mo);border-radius:2px;transition:transform .25s,opacity .25s}
+.hanbao[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hanbao[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hanbao[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- 首屏(index) ---------- */
+.shouping{position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(135deg,#0B3C38 0%,#0E6A5F 55%,#0F8B7E 100%)}
+.shouping-hua{position:absolute;left:0;right:0;bottom:-6px;opacity:.6;pointer-events:none}
+.shouping-nei{position:relative;text-align:center;padding:88px 0 150px}
+.shouping .biaoqian{display:inline-flex;align-items:center;gap:8px;font-size:13px;
+  letter-spacing:3px;color:#CBE6DF;border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;padding:6px 18px;margin-bottom:26px}
+.shouping h1{max-width:760px;margin:0 auto 20px}
+.shouping .dao{max-width:640px;margin:0 auto 36px;color:#D6EAE5;font-size:15px}
+.shouping .anzu{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* 签名元素:悬浮跨区入口卡片带 */
+.rukou-dai{position:relative;z-index:5;margin-top:-84px}
+.rukou-wang{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.rukou-ka{background:var(--bai);border-radius:12px;box-shadow:var(--yin);
+  padding:26px 22px 22px;position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;display:block}
+.rukou-ka::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.rukou-ka:hover{transform:translateY(-4px);box-shadow:var(--yin-fu)}
+.rukou-ka svg{width:52px;height:52px;margin-bottom:14px}
+.rukou-ka h3{margin-bottom:6px}
+.rukou-ka p{font-size:13px;color:var(--zi-qian);line-height:1.7}
+.rukou-ka .jiantou{margin-top:12px;font-size:13px;color:var(--zhu);font-weight:700}
+
+/* ---------- 区块通用 ---------- */
+.duan{padding:76px 0}
+.duan--di{background:var(--di)}
+.duan-tou{text-align:center;max-width:640px;margin:0 auto 44px}
+.duan-tou .qian{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;
+  color:var(--zhu);background:var(--tint);border-radius:999px;padding:4px 16px;margin-bottom:14px}
+.duan-tou h2{margin-bottom:12px}
+.duan-tou h2::after{content:"";display:block;width:56px;height:3px;border-radius:3px;
+  background:var(--jianbian);margin:14px auto 0}
+.duan-tou p{color:var(--zi-qian);font-size:15px}
+
+/* ---------- 数字事实条 ---------- */
+.shuzi-dai{margin-top:56px;border-top:1px solid var(--xian);padding-top:36px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.shuzi-dai b{display:block;font-size:32px;color:var(--zhu);font-weight:700;line-height:1.3}
+.shuzi-dai span{font-size:13px;color:var(--zi-qian)}
+
+/* ---------- 解决方案两例(index) ---------- */
+.fangan-wang{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.fangan-ka{background:var(--bai);border-radius:12px;box-shadow:var(--yin);overflow:hidden;
+  position:relative;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.fangan-ka::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian);z-index:2}
+.fangan-ka:hover{transform:translateY(-4px);box-shadow:var(--yin-fu)}
+.fangan-tu{background:var(--tint);padding:22px 26px 10px}
+.fangan-nei{padding:22px 26px 26px;display:flex;flex-direction:column;flex:1}
+.fangan-nei h3{margin-bottom:8px}
+.fangan-nei p{font-size:14px;color:var(--zi-qian);margin-bottom:16px;flex:1}
+.fangan-nei .jiantou{font-size:14px;color:var(--zhu);font-weight:700}
+
+/* ---------- 新闻卡(index / news) ---------- */
+.xinwen-wang{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.xinwen-ka{background:var(--bai);border-radius:12px;box-shadow:var(--yin);padding:26px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:10px;
+  transition:transform .2s,box-shadow .2s;cursor:pointer;text-align:left;border:none;font-size:15px}
+.xinwen-ka::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.xinwen-ka:hover{transform:translateY(-4px);box-shadow:var(--yin-fu)}
+.xinwen-ka time{font-size:13px;color:var(--zhu);font-weight:700}
+.xinwen-ka h3{font-size:16px;line-height:1.6}
+.xinwen-ka p{font-size:13px;color:var(--zi-qian);line-height:1.8;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* 新闻列表页 */
+.xw-lie{display:flex;flex-direction:column;gap:18px;max-width:860px;margin:0 auto}
+.xw-tiao{background:var(--bai);border-radius:12px;box-shadow:var(--yin);padding:24px 28px;
+  display:flex;gap:24px;align-items:flex-start;border:none;text-align:left;cursor:pointer;
+  font-family:inherit;font-size:15px;width:100%;transition:transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden}
+.xw-tiao::before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--jianbian)}
+.xw-tiao:hover{transform:translateX(4px);box-shadow:var(--yin-fu)}
+.xw-riqi{flex:none;width:74px;text-align:center;background:var(--tint);border-radius:10px;padding:10px 0}
+.xw-riqi b{display:block;font-size:24px;color:var(--zhu);line-height:1.2}
+.xw-riqi span{font-size:13px;color:var(--zi-qian)}
+.xw-tiao h3{font-size:17px;margin-bottom:6px}
+.xw-tiao p{font-size:14px;color:var(--zi-qian)}
+.xw-xiang{max-width:860px;margin:0 auto;background:var(--bai);border-radius:12px;
+  box-shadow:var(--yin);padding:44px 48px;position:relative;overflow:hidden}
+.xw-xiang::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.xw-xiang time{font-size:13px;color:var(--zhu);font-weight:700}
+.xw-xiang h2{margin:10px 0 22px;padding-bottom:20px;border-bottom:1px solid var(--xian)}
+.xw-xiang .zhengwen p{margin-bottom:16px;font-size:15px}
+.fanhui{margin-bottom:22px}
+
+/* ---------- 产品页 ---------- */
+.cp-zu{padding:56px 0 8px}
+.cp-zu-tou{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.cp-zu-tou h2{font-size:22px}
+.cp-zu-tou span{font-size:13px;color:var(--zi-qian);letter-spacing:2px}
+.cp-wang{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.cp-ka{background:var(--bai);border-radius:12px;box-shadow:var(--yin);overflow:hidden;
+  position:relative;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.cp-ka::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian);z-index:2}
+.cp-ka:hover{transform:translateY(-4px);box-shadow:var(--yin-fu)}
+.cp-tu{background:var(--di);padding:18px 18px 8px}
+.cp-nei{padding:18px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.cp-nei .hang1{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cp-nei h3{font-size:17px}
+.xinghao{flex:none;font-size:13px;font-weight:700;color:var(--zhu-shen);
+  background:var(--tint);border-radius:6px;padding:2px 10px}
+.cp-can{font-size:14px;color:var(--zi);display:flex;gap:8px;align-items:flex-start}
+.cp-can svg{flex:none;margin-top:5px}
+.cp-chang{font-size:13px;color:var(--zi-qian)}
+.cp-nei .niu-xi{margin-top:auto;align-self:flex-start}
+
+/* 产品分类锚点导航条 */
+.cp-mao{position:sticky;top:79px;z-index:40;background:var(--bai);
+  border-bottom:1px solid var(--xian);box-shadow:0 4px 12px rgba(11,60,56,.04)}
+.cp-mao .wai{display:flex;gap:8px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+.cp-mao a{flex:none;font-size:14px;color:var(--zi);border-radius:999px;padding:10px 20px;
+  min-height:44px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+.cp-mao a:hover,.cp-mao a.huo{background:var(--tint);color:var(--zhu-shen);font-weight:700}
+
+/* ---------- 弹层(产品详情) ---------- */
+.zhe{position:fixed;inset:0;background:rgba(7,48,44,.55);z-index:90;
+  display:none;align-items:center;justify-content:center;padding:20px}
+.zhe.kai{display:flex}
+.tanchuang{background:var(--bai);border-radius:14px;max-width:720px;width:100%;
+  max-height:86vh;overflow-y:auto;position:relative;padding:36px 40px;box-shadow:var(--yin-fu)}
+.tanchuang::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian);border-radius:14px 14px 0 0}
+.tc-guan{position:absolute;top:14px;right:14px;width:44px;height:44px;border:none;
+  background:var(--di);border-radius:50%;font-size:20px;color:var(--mo);line-height:1}
+.tc-guan:hover{background:var(--tint);color:var(--zhu)}
+.tanchuang .tc-tu{background:var(--di);border-radius:10px;padding:16px;margin:18px 0}
+.tanchuang h3{font-size:20px;padding-right:44px}
+.tanchuang .tc-jie{font-size:14px;color:var(--zi-qian);margin-top:6px}
+.can-biao{width:100%;border-collapse:collapse;margin-top:8px}
+.can-biao th,.can-biao td{font-size:14px;text-align:left;padding:10px 14px;border-bottom:1px solid var(--xian)}
+.can-biao th{color:var(--zi-qian);font-weight:400;width:38%;background:var(--di)}
+.can-biao td{color:var(--mo);font-weight:700}
+.tanchuang .anzu{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- 子页页头带 ---------- */
+.yetou{color:#fff;background:linear-gradient(120deg,var(--mo) 0%,#0D5A50 70%,var(--zhu) 100%);
+  padding:56px 0 48px;position:relative;overflow:hidden}
+.yetou::after{content:"";position:absolute;right:-60px;top:-70px;width:300px;height:300px;
+  border-radius:50%;border:44px solid rgba(255,255,255,.06)}
+.yetou h1{font-size:32px;margin-bottom:8px}
+.yetou p{color:#CBE6DF;font-size:14px}
+.mianbao{font-size:13px;color:#9FC9C0;margin-bottom:14px}
+.mianbao a:hover{color:#fff;text-decoration:underline}
+
+/* ---------- 解决方案页 ---------- */
+.fa-kuai{background:var(--bai);border-radius:14px;box-shadow:var(--yin);
+  padding:44px 48px;margin-bottom:44px;position:relative;overflow:hidden}
+.fa-kuai::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.fa-kuai .fa-bq{display:inline-block;font-size:13px;font-weight:700;color:var(--zhu);
+  background:var(--tint);border-radius:999px;padding:4px 16px;margin-bottom:12px;letter-spacing:1px}
+.fa-kuai h2{margin-bottom:10px}
+.fa-kuai>p{max-width:760px;color:var(--zi-qian);font-size:14px;margin-bottom:26px}
+.fa-liucheng{background:var(--di);border-radius:12px;padding:22px;margin-bottom:26px}
+.lc-shou{display:none;max-width:360px;margin:0 auto}
+@media (max-width:640px){
+  .lc-zhuo{display:none}
+  .lc-shou{display:block}
+}
+.fa-lie{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+.fa-lie li{font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.fa-lie svg{flex:none;margin-top:6px}
+.fa-lie b{color:var(--mo)}
+.fa-jiao{margin-top:26px;padding-top:22px;border-top:1px dashed var(--xian);
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.fa-jiao p{font-size:14px;color:var(--zi-qian)}
+.fa-jiao b{color:var(--zhu)}
+
+/* ---------- 关于页 ---------- */
+.guanyu-wang{display:grid;grid-template-columns:7fr 5fr;gap:44px;align-items:start}
+.guanyu-wen p{margin-bottom:16px;font-size:15px}
+.guanyu-wen .tese{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.guanyu-wen .tese li{background:var(--di);border-radius:10px;padding:14px 16px;font-size:14px;
+  display:flex;gap:10px;align-items:flex-start}
+.guanyu-wen .tese svg{flex:none;margin-top:5px}
+.guanyu-tu{background:var(--bai);border-radius:12px;box-shadow:var(--yin);padding:22px;
+  position:relative;overflow:hidden}
+.guanyu-tu::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.guanyu-tu figcaption{font-size:13px;color:var(--zi-qian);text-align:center;margin-top:10px}
+
+/* 发展节点(时间轴) */
+.jiedian{max-width:820px;margin:0 auto;position:relative;padding-left:34px}
+.jiedian::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,var(--zhu),var(--mai))}
+.jiedian li{position:relative;padding:0 0 30px 22px}
+.jiedian li:last-child{padding-bottom:0}
+.jiedian li::before{content:"";position:absolute;left:-32px;top:7px;width:14px;height:14px;
+  border-radius:50%;background:var(--bai);border:3.5px solid var(--zhu)}
+.jiedian li:nth-child(even)::before{border-color:var(--mai)}
+.jiedian b{display:block;font-size:18px;color:var(--zhu);line-height:1.4}
+.jiedian h3{font-size:16px;margin:2px 0 4px}
+.jiedian p{font-size:14px;color:var(--zi-qian)}
+
+/* ---------- 联系页 ---------- */
+.lianxi-wang{display:grid;grid-template-columns:5fr 7fr;gap:32px;align-items:start}
+.lx-ka{background:var(--bai);border-radius:12px;box-shadow:var(--yin);padding:30px;
+  position:relative;overflow:hidden;margin-bottom:22px}
+.lx-ka::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.lx-hang{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--xian)}
+.lx-hang:last-child{border-bottom:none;padding-bottom:0}
+.lx-hang:first-of-type{padding-top:6px}
+.lx-hang svg{flex:none;margin-top:3px}
+.lx-hang .zhu13{display:block}
+.lx-hang b{font-size:16px;color:var(--mo)}
+
+/* 表单 */
+.biaodan{background:var(--bai);border-radius:12px;box-shadow:var(--yin);padding:34px 36px;
+  position:relative;overflow:hidden}
+.biaodan::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--jianbian)}
+.biaodan h3{margin-bottom:6px}
+.biaodan .fu{font-size:13px;color:var(--zi-qian);margin-bottom:22px}
+.bd-hang{margin-bottom:18px}
+.bd-shuang{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.bd-hang label{display:block;font-size:14px;font-weight:700;color:var(--mo);margin-bottom:7px}
+.bd-hang label .bi{color:#C0392B}
+.bd-hang input,.bd-hang select,.bd-hang textarea{width:100%;border:1.5px solid var(--xian);
+  border-radius:8px;padding:11px 14px;font-size:15px;font-family:inherit;color:var(--zi);
+  background:var(--bai);transition:border-color .2s,box-shadow .2s;min-height:46px}
+.bd-hang textarea{min-height:110px;resize:vertical}
+.bd-hang input:focus,.bd-hang select:focus,.bd-hang textarea:focus{outline:none;
+  border-color:var(--zhu);box-shadow:0 0 0 3px rgba(15,139,126,.15)}
+.bd-hang input.cuo-kuang{border-color:#C0392B}
+.cuo{display:none;font-size:13px;color:#C0392B;margin-top:5px}
+.cuo.xian{display:block}
+.cheng{display:none;text-align:center;padding:34px 10px}
+.cheng.xian{display:block}
+.cheng svg{margin:0 auto 16px}
+.cheng h3{font-size:20px;margin-bottom:8px}
+.cheng p{font-size:14px;color:var(--zi-qian)}
+
+/* ---------- 询价引导带 ---------- */
+.xunjia{color:#fff;background:linear-gradient(120deg,var(--mo) 0%,#0D5A50 60%,var(--zhu) 100%);
+  position:relative;overflow:hidden}
+.xunjia::before{content:"";position:absolute;left:-70px;bottom:-90px;width:280px;height:280px;
+  border-radius:50%;border:40px solid rgba(255,255,255,.06)}
+.xunjia .wai{position:relative;display:flex;align-items:center;justify-content:space-between;
+  gap:26px;padding-top:56px;padding-bottom:56px;flex-wrap:wrap}
+.xunjia h2{color:#fff;margin-bottom:8px}
+.xunjia p{color:#CBE6DF;font-size:14px}
+.xunjia .dianhua{font-size:26px;font-weight:700;color:var(--mai);letter-spacing:1px}
+.xunjia .anzu{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+
+/* ---------- 页脚 ---------- */
+.jiao{background:var(--mo-shen);color:#9DBBB5;font-size:14px}
+.jiao a:hover{color:#fff}
+.jiao-wang{display:grid;grid-template-columns:4fr 2.5fr 2.5fr 3fr;gap:36px;padding:56px 0 44px}
+.jiao h3{color:#fff;font-size:15px;margin-bottom:16px}
+.jiao .logo{margin-bottom:14px}
+.jiao .logo-ming{color:#fff}
+.jiao .logo-fu{color:#7FA39D}
+.jiao-jie{font-size:13px;line-height:1.9}
+.jiao-lie li{margin-bottom:10px}
+.jiao-lian li{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start}
+.jiao-lian svg{flex:none;margin-top:5px}
+.jiao-di{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;text-align:center;
+  font-size:13px;color:#6E8F89}
+.jiao-di p+p{margin-top:4px}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width:1024px){
+  h1{font-size:32px}
+  .rukou-wang{grid-template-columns:1fr 1fr}
+  .cp-wang{grid-template-columns:1fr 1fr}
+  .jiao-wang{grid-template-columns:1fr 1fr}
+  .guanyu-wang,.lianxi-wang{grid-template-columns:1fr}
+}
+@media (max-width:960px){
+  .hanbao{display:flex}
+  .dh-cai{display:none;position:absolute;top:79px;left:0;right:0;background:var(--bai);
+    flex-direction:column;align-items:stretch;gap:0;padding:10px 20px 20px;
+    box-shadow:0 16px 24px rgba(11,60,56,.12);border-top:1px solid var(--xian)}
+  .dh-cai.kai{display:flex}
+  .dh-cai>a{padding:13px 8px;border-bottom:1px solid var(--xian);font-size:16px;min-height:48px;
+    display:flex;align-items:center}
+  .dh-cai>a:not(.niu)::after{display:none}
+  .dh-cai .niu{margin-top:16px;justify-content:center}
+}
+@media (max-width:640px){
+  h1{font-size:28px}
+  h2{font-size:22px}
+  .wai{padding:0 20px}
+  .duan{padding:56px 0}
+  .shouping-nei{padding:64px 0 130px}
+  .rukou-dai{margin-top:-72px}
+  .rukou-wang{grid-template-columns:1fr;gap:14px}
+  .shuzi-dai{grid-template-columns:1fr 1fr;gap:26px 14px}
+  .fangan-wang{grid-template-columns:1fr}
+  .xinwen-wang{grid-template-columns:1fr}
+  .cp-wang{grid-template-columns:1fr}
+  .cp-mao{top:0}
+  .bd-shuang{grid-template-columns:1fr}
+  .biaodan{padding:26px 22px}
+  .fa-kuai{padding:28px 22px}
+  .fa-lie{grid-template-columns:1fr}
+  .xw-tiao{padding:18px 20px;gap:16px}
+  .xw-xiang{padding:28px 22px}
+  .xunjia .wai{flex-direction:column;align-items:flex-start}
+  .jiao-wang{grid-template-columns:1fr;gap:28px;padding:44px 0 32px}
+  .tanchuang{padding:28px 22px}
+  .lianxi-wang{gap:22px}
+}

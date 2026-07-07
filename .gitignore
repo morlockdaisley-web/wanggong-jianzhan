@@ -1,7 +1,7 @@
 # 仅发布网站本身,排除内部/过程/临时文件
 # 内部任务文档含敏感信息(风控敏感期),不推送到 public 仓库
 王工建站demo站_ClaudeCode任务文档.md
-
+主图&详情图/
 # 编辑器 / 环境 / 过程文件
 .claude/
 process/
@@ -12,3 +12,6 @@ scratchpad/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Cloudflare 本地缓存,不入库
+.wrangler/

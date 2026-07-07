@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23c0392b'/%3E%3Ctext x='8' y='12' font-size='10' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E王%3C/text%3E%3C/svg%3E">
+<title>王工建站 · 案例演示</title>
+<style>
+:root{
+  --blue: #2563EB;        /* 科技蓝主色 */
+  --blue-deep: #1D4ED8;   /* 渐变深端 */
+  --card: rgba(255,255,255,.09);   /* 卡片:蓝底上的玻璃白 */
+  --line: rgba(255,255,255,.22);   /* 分隔线/描边 */
+  --txt: #FFFFFF;         /* 主文字 */
+  --sub: rgba(255,255,255,.78);    /* 次要文字 */
+  --red: #C0392B;         /* 王工印章红,仅小面积识别 */
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+  min-height:100vh;
+  background:linear-gradient(175deg, #3B82F6 0%, var(--blue) 30%, var(--blue-deep) 100%);
+  background-color:var(--blue-deep);
+  color:var(--txt);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;}
+
+/* ===== 页头 ===== */
+header{padding:56px 0 36px;}
+.kicker{
+  display:inline-block;
+  font-size:12px;letter-spacing:.3em;
+  color:#fff;
+  background:var(--red);           /* 印章红仅保留在此小标签 */
+  padding:3px 14px 3px 17px;
+  border-radius:2px;
+  margin-bottom:16px;
+}
+h1{font-size:clamp(26px,6vw,36px);font-weight:700;letter-spacing:.03em;}
+.intro{margin-top:10px;color:var(--sub);font-size:15px;max-width:38em;}
+
+/* ===== 画廊网格 ===== */
+main{padding:8px 0 64px;}
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:26px;
+}
+@media (min-width:720px){ .grid{grid-template-columns:1fr 1fr;} } /* 双列,图片区域更大 */
+
+.case{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:border-color .2s, transform .2s;
+}
+.case:hover{border-color:rgba(255,255,255,.55);transform:translateY(-3px);}
+
+.shot{
+  padding:14px 14px 0;      /* 画廊式留白衬托截图 */
+}
+.shot img{
+  width:100%;
+  aspect-ratio:16/9;        /* 五图统一图框,等高等宽 */
+  height:auto;
+  object-fit:cover;         /* 等比裁切填充,不拉伸 */
+  object-position:top;      /* 顶部对齐,保留导航与主标题,裁底部 */
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:5px;
+  box-shadow:0 6px 18px rgba(0,0,0,.22);
+}
+.shot img.pos-left{object-position:top left;} /* 矮图放大后左对齐,保 logo 与标题 */
+.shot img.pos-30{object-position:30% top;}    /* 微左偏,logo 与主标题兼顾 */
+
+.body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+h2{font-size:17px;font-weight:600;letter-spacing:.01em;}
+.tag{
+  font-size:12px;color:#fff;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.10);
+  padding:2px 10px;border-radius:2px;
+  white-space:nowrap;flex:none;
+}
+.desc{font-size:13.5px;color:var(--sub);flex:1;}
+.enter{
+  align-self:flex-start;
+  margin-top:6px;
+  font-size:14px;letter-spacing:.15em;
+  color:var(--blue-deep);
+  background:#fff;
+  border-radius:3px;
+  padding:8px 30px;
+  font-weight:600;
+  transition:background .2s, color .2s;
+}
+.enter:hover{background:var(--red);color:#fff;}
+
+/* ===== 页脚 ===== */
+footer{
+  border-top:1px solid var(--line);
+  padding:26px 0 40px;
+  text-align:center;
+  font-size:12px;color:rgba(255,255,255,.65);letter-spacing:.05em;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">案例画廊</p>
+    <h1>王工建站 · 案例演示</h1>
+    <p class="intro">五个不同档位的演示案例,从百元小修到带后台的企业官网,点「进入」即可完整浏览。</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="grid">
+
+      <article class="case">
+        <div class="shot"><img class="pos-left" src="preview/xiaoxiu.png" alt="安达机械配件厂案例首屏截图"></div>
+        <div class="body">
+          <div class="meta">
+            <h2>安达机械配件厂 · 旧站翻新</h2>
+            <span class="tag">¥100 网页小修</span>
+          </div>
+          <p class="desc">老旧企业站翻新,同一批内容改到清爽现代。</p>
+          <a class="enter" href="xiaoxiu/index.html">进入</a>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="shot"><img src="preview/luodiye.png" alt="星码少儿编程案例首屏截图"></div>
+        <div class="body">
+          <div class="meta">
+            <h2>星码少儿编程 · 报名落地页</h2>
+            <span class="tag">¥399 落地页</span>
+          </div>
+          <p class="desc">转化型单页,信息流广告落地收报名。</p>
+          <a class="enter" href="luodiye/index.html">进入</a>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="shot"><img src="preview/famen.png" alt="恒锐阀门案例首屏截图"></div>
+        <div class="body">
+          <div class="meta">
+            <h2>恒锐阀门 · 企业展示站</h2>
+            <span class="tag">¥980 展示站</span>
+          </div>
+          <p class="desc">工业制造五页站,产品线稿图纸风。</p>
+          <a class="enter" href="famen/index.html">进入</a>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="shot"><img src="preview/lvsuo.png" alt="立衡律师事务所案例首屏截图"></div>
+        <div class="body">
+          <div class="meta">
+            <h2>立衡律师事务所 · 形象展示站</h2>
+            <span class="tag">¥980 展示站</span>
+          </div>
+          <p class="desc">精品律所四页站,克制专业的形象气质。</p>
+          <a class="enter" href="lvsuo/index.html">进入</a>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="shot"><img class="pos-30" src="preview/guanwang.png" alt="泰昌食品机械案例首屏截图"></div>
+        <div class="body">
+          <div class="meta">
+            <h2>泰昌食品机械 · 企业官网</h2>
+            <span class="tag">¥1980 企业官网</span>
+          </div>
+          <p class="desc">六页官网,含可自主更新的内容后台。</p>
+          <a class="enter" href="guanwang/index.html">进入</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">本站为王工建站演示案例 · 企业与数据均为虚构</div>
+</footer>
+
+</body>
+</html>
