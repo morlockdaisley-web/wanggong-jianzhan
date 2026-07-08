@@ -3,10 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F1F3D">
+  <meta name="theme-color" content="#2563EB">
   <title>王工建站 - 落地页·展示站·企业官网 | 王工本人设计交付</title>
   <meta name="description" content="王工建站,一个人把你的网页做干净。网页小修¥100、落地页¥399、展示站¥980、企业官网¥1980,明码标价、源码交付、协助部署。淘宝搜索&quot;王工文档铺&quot;。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23c0392b'/%3E%3Ctext x='8' y='12' font-size='10' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E王%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+  /* ============================================================
+     科技蓝换肤覆盖层(与 anli/index.html 同一套色:
+     #3B82F6 → #2563EB → #1D4ED8 渐变,印章红 #C0392B 仅小面积)
+     只覆盖颜色,不改 css/style.css 与排版结构
+     ============================================================ */
+  body{
+    background:linear-gradient(175deg,#3B82F6 0%,#2563EB 30%,#1D4ED8 100%);
+    background-color:#1D4ED8;
+  }
+  .hero{background:transparent;}
+  .hero__glow{background:radial-gradient(circle,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 68%);}
+  .pill{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.38);}
+  .ico-check{stroke:#fff;}
+  .cta{
+    background:#fff;color:#1D4ED8;
+    box-shadow:0 12px 28px rgba(10,30,110,.35);
+    text-decoration:none;
+  }
+  .cta:hover{box-shadow:0 16px 34px rgba(10,30,110,.45);}
+  .cta:focus-visible{outline-color:rgba(255,255,255,.7);}
+
+  .section--light{background:transparent;}
+  .section__title{color:#fff;}
+  .section--dark{background:rgba(9,14,60,.22);}
+
+  .card__price{color:#1D4ED8;}
+  .badge--fast{color:#1D4ED8;background:#DBEAFE;}
+  .pricing__note{color:rgba(255,255,255,.85);}
+
+  .reason::before{background:linear-gradient(180deg,#fff,rgba(255,255,255,.35));}
+  .reason__title{color:#fff;}
+  .reason__text{color:rgba(255,255,255,.85);}
+
+  .step__num{background:linear-gradient(135deg,#1D4ED8,#3B82F6);}
+  .step::after{color:rgba(255,255,255,.75);}
+
+  .footer{background:transparent;border-top:1px solid rgba(255,255,255,.22);}
+  .cta--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);}
+  .cta--ghost:hover{background:rgba(255,255,255,.12);}
+  .toast{background:rgba(13,27,88,.96);border-color:rgba(255,255,255,.4);}
+
+  /* ============================================================
+     新增 · 案例展示板块(卡片语言与 anli/index.html 一致)
+     ============================================================ */
+  .case-grid{display:grid;grid-template-columns:1fr;gap:22px;}
+  .case-card{
+    display:flex;flex-direction:column;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:8px;overflow:hidden;
+    color:#fff;text-decoration:none;
+    transition:border-color .2s,transform .2s;
+  }
+  .case-card:hover{border-color:rgba(255,255,255,.55);transform:translateY(-3px);}
+  .case-shot{display:block;padding:12px 12px 0;}
+  .case-shot img{
+    display:block;width:100%;
+    aspect-ratio:16/9;height:auto;
+    object-fit:cover;object-position:top;   /* 等比裁切,顶部对齐,不拉伸 */
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:5px;
+    box-shadow:0 6px 18px rgba(0,0,0,.22);
+  }
+  .case-shot img.pos-left{object-position:top left;}
+  .case-shot img.pos-30{object-position:30% top;}
+  .case-info{display:flex;flex-direction:column;gap:4px;padding:14px 18px 18px;}
+  .case-info strong{font-size:1.02rem;font-weight:700;}
+  .case-info em{font-style:normal;font-size:.9rem;color:rgba(255,255,255,.78);}
+  .cases-more{text-align:center;margin-top:32px;}
+  @media (min-width:720px){.case-grid{grid-template-columns:1fr 1fr;}}
+  </style>
   <!-- 渐进增强:JS 可用时才启用淡入;禁用 JS 则内容默认全可见 -->
   <script>document.documentElement.className += " js";</script>
 </head>
@@ -96,6 +169,62 @@
           <h3 class="notice__title">这些我不接(诚实说)</h3>
           <p class="notice__text">会员登录系统 · 在线支付交易 · 复杂后台开发 —— 我专注做展示型网站与落地页,做不好的不硬接,免得耽误你。</p>
         </aside>
+      </div>
+    </section>
+
+    <!-- ===== 区块 2.5 · 案例展示 ===== -->
+    <section class="section" id="cases">
+      <div class="wrap">
+        <h2 class="section__title reveal">看看做过的站</h2>
+
+        <div class="case-grid">
+          <a class="case-card reveal" href="anli/xiaoxiu/">
+            <span class="case-shot"><img class="pos-left" src="anli/preview/xiaoxiu.png" alt="安达机械配件厂案例首屏截图" loading="lazy"></span>
+            <span class="case-info">
+              <strong>安达机械配件厂 · 旧站翻新</strong>
+              <em>老旧企业站翻新,同一批内容改到清爽现代。</em>
+            </span>
+          </a>
+
+          <a class="case-card reveal" href="anli/luodiye/">
+            <span class="case-shot"><img src="anli/preview/luodiye.png" alt="星码少儿编程案例首屏截图" loading="lazy"></span>
+            <span class="case-info">
+              <strong>星码少儿编程 · 报名落地页</strong>
+              <em>转化型单页,信息流广告落地收报名。</em>
+            </span>
+          </a>
+
+          <a class="case-card reveal" href="anli/famen/">
+            <span class="case-shot"><img src="anli/preview/famen.png" alt="恒锐阀门案例首屏截图" loading="lazy"></span>
+            <span class="case-info">
+              <strong>恒锐阀门 · 企业展示站</strong>
+              <em>工业制造五页站,产品线稿图纸风。</em>
+            </span>
+          </a>
+
+          <a class="case-card reveal" href="anli/lvsuo/">
+            <span class="case-shot"><img src="anli/preview/lvsuo.png" alt="立衡律师事务所案例首屏截图" loading="lazy"></span>
+            <span class="case-info">
+              <strong>立衡律师事务所 · 形象展示站</strong>
+              <em>精品律所四页站,克制专业的形象气质。</em>
+            </span>
+          </a>
+
+          <a class="case-card reveal" href="anli/guanwang/">
+            <span class="case-shot"><img class="pos-30" src="anli/preview/guanwang.png" alt="泰昌食品机械案例首屏截图" loading="lazy"></span>
+            <span class="case-info">
+              <strong>泰昌食品机械 · 企业官网</strong>
+              <em>六页官网,含可自主更新的内容后台。</em>
+            </span>
+          </a>
+        </div>
+
+        <div class="cases-more reveal">
+          <a class="cta" href="anli/">
+            <span>查看全部案例</span>
+            <svg class="ico-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 

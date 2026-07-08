@@ -32,6 +32,17 @@ img{display:block;max-width:100%;}
 
 /* ===== 页头 ===== */
 header{padding:56px 0 36px;}
+.back-home{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;letter-spacing:.05em;
+  color:rgba(255,255,255,.85);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 16px;
+  margin-bottom:20px;
+  transition:background .2s,color .2s;
+}
+.back-home:hover{background:rgba(255,255,255,.12);color:#fff;}
 .kicker{
   display:inline-block;
   font-size:12px;letter-spacing:.3em;
@@ -116,6 +127,8 @@ footer{
 
 <header>
   <div class="wrap">
+    <a class="back-home" href="../">&larr; 返回首页看报价</a>
+    <br>
     <p class="kicker">案例画廊</p>
     <h1>王工建站 · 案例演示</h1>
     <p class="intro">五个不同档位的演示案例,从百元小修到带后台的企业官网,点「进入」即可完整浏览。</p>
