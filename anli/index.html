@@ -71,6 +71,7 @@ main{padding:8px 0 64px;}
   overflow:hidden;
   display:flex;flex-direction:column;
   transition:border-color .2s, transform .2s;
+  cursor:pointer;              /* 整卡是链接,与首页案例卡一致 */
 }
 .case:hover{border-color:rgba(255,255,255,.55);transform:translateY(-3px);}
 
@@ -112,7 +113,7 @@ h2{font-size:17px;font-weight:600;letter-spacing:.01em;}
   font-weight:600;
   transition:background .2s, color .2s;
 }
-.enter:hover{background:var(--red);color:#fff;}
+.case:hover .enter{background:var(--red);color:#fff;} /* 整卡悬停时按钮同步反馈 */
 
 /* ===== 页脚 ===== */
 footer{
@@ -139,7 +140,7 @@ footer{
   <div class="wrap">
     <div class="grid">
 
-      <article class="case">
+      <a class="case" href="xiaoxiu/">
         <div class="shot"><img class="pos-left" src="preview/xiaoxiu.png" alt="安达机械配件厂案例首屏截图"></div>
         <div class="body">
           <div class="meta">
@@ -147,11 +148,11 @@ footer{
             <span class="tag">¥100 网页小修</span>
           </div>
           <p class="desc">老旧企业站翻新,同一批内容改到清爽现代。</p>
-          <a class="enter" href="xiaoxiu/index.html">进入</a>
+          <span class="enter">进入</span>
         </div>
-      </article>
+      </a>
 
-      <article class="case">
+      <a class="case" href="luodiye/">
         <div class="shot"><img src="preview/luodiye.png" alt="星码少儿编程案例首屏截图"></div>
         <div class="body">
           <div class="meta">
@@ -159,11 +160,11 @@ footer{
             <span class="tag">¥399 落地页</span>
           </div>
           <p class="desc">转化型单页,信息流广告落地收报名。</p>
-          <a class="enter" href="luodiye/index.html">进入</a>
+          <span class="enter">进入</span>
         </div>
-      </article>
+      </a>
 
-      <article class="case">
+      <a class="case" href="famen/">
         <div class="shot"><img src="preview/famen.png" alt="恒锐阀门案例首屏截图"></div>
         <div class="body">
           <div class="meta">
@@ -171,11 +172,11 @@ footer{
             <span class="tag">¥980 展示站</span>
           </div>
           <p class="desc">工业制造五页站,产品线稿图纸风。</p>
-          <a class="enter" href="famen/index.html">进入</a>
+          <span class="enter">进入</span>
         </div>
-      </article>
+      </a>
 
-      <article class="case">
+      <a class="case" href="lvsuo/">
         <div class="shot"><img src="preview/lvsuo.png" alt="立衡律师事务所案例首屏截图"></div>
         <div class="body">
           <div class="meta">
@@ -183,11 +184,11 @@ footer{
             <span class="tag">¥980 展示站</span>
           </div>
           <p class="desc">精品律所四页站,克制专业的形象气质。</p>
-          <a class="enter" href="lvsuo/index.html">进入</a>
+          <span class="enter">进入</span>
         </div>
-      </article>
+      </a>
 
-      <article class="case">
+      <a class="case" href="guanwang/">
         <div class="shot"><img class="pos-30" src="preview/guanwang.png" alt="泰昌食品机械案例首屏截图"></div>
         <div class="body">
           <div class="meta">
@@ -195,9 +196,9 @@ footer{
             <span class="tag">¥1980 企业官网</span>
           </div>
           <p class="desc">六页官网,含可自主更新的内容后台。</p>
-          <a class="enter" href="guanwang/index.html">进入</a>
+          <span class="enter">进入</span>
         </div>
-      </article>
+      </a>
 
     </div>
   </div>
